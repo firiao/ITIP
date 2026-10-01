@@ -44,7 +44,7 @@ public final class CourseToolkit {
 
     public static double average(int[] values) {
     if (values == null || values.length == 0) {
-        throw new IllegalArgumentException("result is null or massive doesn't includes any values");
+        throw new IllegalArgumentException("massive is null or massive doesn't includes any values");
     }
     
     int sum = 0;
@@ -52,5 +52,30 @@ public final class CourseToolkit {
         sum += num;
     }
     return (double) sum / values.length;        
+    }
+    public static int min(int[] values){
+        if (values.length == 0) {
+            throw new IllegalArgumentException("values must not be empty");
+        }
+        int result = values[0]; 
+
+        for (int i = 0; i < values.length ; i++) {
+            if (values[i] < result) {
+                result = values[i];
+            }
+        }
+        return result;
+    }
+    public static int max(int[] values){
+        if (values.length == 0) {
+            throw new IllegalArgumentException("values must not be empty");
+        }
+        int result = values[0]; 
+        for (int i = 0; i < values.length ; i++) {
+            if (values[i] > result) {
+                result = values[i];
+            }
+        }
+        return result;
     }
 }

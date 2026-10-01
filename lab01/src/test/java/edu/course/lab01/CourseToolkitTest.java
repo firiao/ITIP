@@ -81,7 +81,7 @@ class CourseToolkitTest {
     }
     
     @Test 
-    void returnFalseForNull() {
+    void returnExceptionForNull() {
         assertThrows(IllegalArgumentException.class, () -> {
             CourseToolkit.isPalindrome(null);
     });
@@ -120,4 +120,54 @@ class CourseToolkitTest {
     
         assertNotEquals(5, result);
     }
+    /**                     TEST FOR min                      */
+    @Test 
+    void returnCorrectMinValue(){
+        int[] array = {0, 12, 14, 16, -2};
+        int result = CourseToolkit.min(array);
+
+        assertEquals(-2, result);
+    }
+
+    @Test 
+    void returnCorrectMinValueWithSpecificMassive(){
+        int[] array = {1, 1, 1, 1, 1};
+        int result = CourseToolkit.min(array);
+
+        assertEquals(1, result);
+    }
+    
+    @Test 
+    void returnExceptionForEmptyMin() {
+        int[] values = {}; 
+        assertThrows(IllegalArgumentException.class, () -> {
+            CourseToolkit.max(values);
+    });
+    }
+    /**                     TEST FOR max                      */
+    @Test 
+    void returnCorrectMaxValue(){
+        int[] array = {0, 12, 14, 16, -2};
+        int result = CourseToolkit.max(array);
+
+        assertEquals(16, result);
+    }
+
+    @Test 
+    void returnCorrectMaxValueWithSpecificMassive(){
+        int[] array = {1, 1, 1, 1, 1};
+        int result = CourseToolkit.max(array);
+
+        assertEquals(1, result);
+    }
+
+    @Test 
+    void returnExceptionForEmptyMax() {
+        int[] values = {}; 
+        assertThrows(IllegalArgumentException.class, () -> {
+            CourseToolkit.max(values);
+    });
+    }
+
+
 }
