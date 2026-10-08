@@ -128,4 +128,47 @@ public class DataSampleTest {
         DataSample sample = new DataSample(new Identificator("s1"), "cat", SampleStatus.RAW, new double[]{5.0});
         assertEquals(5.0, sample.averageFeature());
     }
+
+    // ========== Группа 7: Доп. задание тесты =========
+    @Test
+    void normalizesFeaturesToZeroOneRange() {
+    DataSample sample = new DataSample(
+        new Identificator("s1"), "cat", SampleStatus.RAW,
+        new double[]{10.0, 20.0, 30.0}
+    );
+    double[] normalized = sample.normalizedFeatures();
+    assertEquals(0.0, normalized[0], 0.0001);
+    assertEquals(0.5, normalized[1], 0.0001);
+    assertEquals(1.0, normalized[2], 0.0001);
+}
+
+    @Test
+    void normalizationDoesNotChangeOriginalFeatures() {
+    DataSample sample = new DataSample(
+        new Identificator("s1"), "cat", SampleStatus.RAW,
+        new double[]{10.0, 20.0, 30.0}
+    );
+    sample.normalizedFeatures();   // вызываем, но не сохраняем результат
+
+    double[] original = sample.getFeatures();
+    assertEquals(10.0, original[0], 0.0001);
+    assertEquals(20.0, original[1], 0.0001);
+    assertEquals(30.0, original[2], 0.0001);
+}
+
+    @Test
+    void normalizationOfIdenticalValuesReturnsZeros() {
+    DataSample sample = new DataSample(
+        new Identificator("s1"), "cat", SampleStatus.RAW,
+        new double[]{5.0, 5.0, 5.0}
+    );
+    double[] normalized = sample.normalizedFeatures();
+    assertEquals(0.0, normalized[0], 0.0001);
+    assertEquals(0.0, normalized[1], 0.0001);
+    assertEquals(0.0, normalized[2], 0.0001);
+}
+
+
+
+
 }

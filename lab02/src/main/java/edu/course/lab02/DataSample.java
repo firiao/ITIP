@@ -1,6 +1,7 @@
 package edu.course.lab02;
 
 public class DataSample {
+
     // Создание полей
     private final Identificator id;
     private final String label;
@@ -10,7 +11,7 @@ public class DataSample {
     // Конструктор
     public DataSample (Identificator id, String label, SampleStatus status, double[] features) {
         
-        // Проверки на правильность введённых значений    
+        // Проверки на правильность введённых значений (инвариант)
         
         if (id == null) {
             throw new IllegalArgumentException("id должен быть не null!");
@@ -83,4 +84,26 @@ public class DataSample {
         }
         return sum / features.length;
     }
+
+    // Метод нормализации данных
+
+    public double[] normalizedFeatures() {
+    double min = features[0];
+    double max = features[0];
+    for (double f : features) {
+        if (f < min) min = f;
+        if (f > max) max = f;
+    }
+
+    // Если все элементы одинаковые, диапазон нулевой
+    if (max == min) {
+        return new double[features.length];   // массив нулей
+    }
+
+    double[] normalized = new double[features.length];
+    for (int i = 0; i < features.length; i++) {
+        normalized[i] = (features[i] - min) / (max - min);
+    }
+    return normalized;
+}
 }
