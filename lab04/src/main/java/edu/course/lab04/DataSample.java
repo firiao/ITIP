@@ -1,10 +1,5 @@
 package edu.course.lab04;
 
-/**
- * Минимальное значение, которое хранится в registry.
- * Класс неизменяемый; equals и hashCode здесь не переопределяются,
- * потому что тесты сравнивают сами экземпляры значений.
- */
 public final class DataSample {
     private final String description;
     private final double accuracy;
