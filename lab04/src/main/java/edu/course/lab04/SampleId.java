@@ -2,10 +2,6 @@ package edu.course.lab04;
 
 import java.util.Objects;
 
-/**
- * Неизменяемый ключ registry: имя набора данных и номер наблюдения.
- * Оба поля участвуют в equals и hashCode.
- */
 public final class SampleId {
     private final String datasetName;
     private final int sampleNumber;
